@@ -31,13 +31,11 @@ body::-webkit-scrollbar-thumb {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    /* This will push the logo to the left and the rest to the right */
     align-items: center;
     background-color: #052a2d;
     color: #ffffff;
     padding-top: 0;
     padding: 5px 10px;
-    /* Optional: Add some padding for better spacing */
     margin-bottom: 10px;
     margin-top: -90px;
     backdrop-filter: blur(10px);
@@ -62,7 +60,6 @@ ul {
     z-index: 10;
 }
 
-
 .nav {
     margin-top: 0;
     display: flex;
@@ -82,11 +79,8 @@ ul {
     position: relative;
     margin-right: 30px;
     font-weight: 600;
-    /* Changed font-weight */
     padding: 5px 10px;
-    /* Added padding */
 }
-
 
 .navbar a:hover {
     color: #4DA674;
@@ -103,13 +97,28 @@ ul {
     transition: all 0.3s ease-in-out;
 }
 
-
 .navbar .button2:hover {
     background-color: #b5942f;
     color: #fff;
     scale: 1.2;
-    transform: translateY(-2px); /* Slight upward movement */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Hamburger menu styles */
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: #fff;
 }
 
 
@@ -718,22 +727,90 @@ footer {
 
 @media screen and (max-width: 768px) {
 
-    /* Header Adjustments */
     .header {
-        padding: 5px 5px;
-        /* Reduced padding */
+        margin-top: -100px;
+        flex-direction: row;
+        justify-content: space-between;
+        /* Stack logo and nav vertically on small screens */
+        align-items: flex-start;
+        /* Align items to the start */
+        padding: 10px;
+        padding-bottom: 0;
+        /* Adjust padding for smaller screens */
     }
 
-    .header.logo img {
-        height: 40px;
-        /* Smaller logo size */
+    .header .logo {
+        margin-bottom: 10px;
+        /* Add space between logo and nav */
+    }
+
+    .navbar .nav-links {
+        width: 100%;
+        position: relative;
+        /*make the nav-links a reference for absolute positioning*/
+    }
+
+    .navbar .menu {
+        display: none;
+        /* Initially hide the menu */
+        flex-direction: column;
+        width: 100px;
+        min-width: max-content;
+        text-align: center;
+        position: absolute;
+        /* Position the menu below the header */
+        top: 40px;
+        /* Adjust this value to match your header's height */
+        left: -65px;
+        background-color: #052a2d;
+        /* Add a background color */
+        z-index: 1;
+        /* Ensure the menu is above other content */
+    }
+
+    .navbar .menu.active {
+        display: flex;
+        /* Show the menu when active */
+        flex-direction: column;
+
+    }
+
+    .navbar .menu li {
+        margin: 10px 0;
+        /* Add vertical spacing between items */
+        margin-right: 0px;
+        /* Remove horizontal margin */
+        padding: 10px 0;
+        /* Add vertical padding */
+    }
+
+    .hamburger {
+        display: block;
+        /* Show the hamburger menu button */
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .navbar .button2 {
+        padding: 0.5rem;
+        font-size: 0.8rem;
     }
 
     /* Hero Section Adjustments */
     .hero {
+        margin-top: 100px;
         padding: 4rem 2rem;
         /* Reduced padding */
-        margin-top: 70px;
         /* Adjusted margin to accommodate header size */
     }
 
@@ -826,6 +903,7 @@ footer {
 
     /* Header Adjustments */
     .header {
+        margin-top: -100px;
         padding: 3px 5px;
         /* Further reduced padding */
     }
@@ -849,7 +927,7 @@ footer {
     .hero {
         padding: 3rem 1.5rem;
         /* Further reduced padding */
-        margin-top: 60px;
+        margin-top: 100px;
         /* Adjusted margin to accommodate header size */
     }
 
